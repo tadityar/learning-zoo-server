@@ -10,19 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108061156) do
+ActiveRecord::Schema.define(version: 20161127164958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "sessions", force: :cascade do |t|
-    t.string  "name",            default: "", null: false
-    t.string  "time"
-    t.string  "lecturer_name",   default: "", null: false
-    t.integer "current_slide",   default: 0,  null: false
-    t.string  "classroom"
-    t.jsonb   "slides_sequence"
-    t.integer "subject_id"
+    t.string   "name",            default: "", null: false
+    t.string   "time"
+    t.string   "lecturer_name",   default: "", null: false
+    t.integer  "current_slide",   default: 0,  null: false
+    t.string   "classroom"
+    t.jsonb    "slides_sequence"
+    t.integer  "subject_id"
+    t.string   "machine_key"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.index ["classroom"], name: "index_sessions_on_classroom", using: :btree
     t.index ["subject_id"], name: "index_sessions_on_subject_id", using: :btree
   end
@@ -32,12 +35,12 @@ ActiveRecord::Schema.define(version: 20161108061156) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string  "name",        default: "", null: false
-    t.integer "start_slide"
-    t.integer "end_slide"
-    t.integer "std_unclear", default: 0,  null: false
-    t.integer "session_id"
-    t.index ["session_id"], name: "index_topics_on_session_id", using: :btree
+    t.string   "name",        default: "", null: false
+    t.integer  "start_slide"
+    t.integer  "end_slide"
+    t.integer  "std_unclear", default: 0,  null: false
+    t.string   "machine_key"
+    t.datetime "time"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,6 +74,5 @@ ActiveRecord::Schema.define(version: 20161108061156) do
   end
 
   add_foreign_key "sessions", "subjects"
-  add_foreign_key "topics", "sessions"
   add_foreign_key "users", "subjects"
 end

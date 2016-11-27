@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:name, :start_slide, :end_slide, :std_unclear, :session_id)
+    params.require(:topic).permit(:name, :start_slide, :end_slide, :std_unclear, :session_id, :machine_key,:time)
   end
 
 end

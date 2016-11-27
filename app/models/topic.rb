@@ -1,3 +1,3 @@
 class Topic < ActiveRecord::Base
-  belongs_to :sessions, inverse_of: :topics
+  validates :machine_key, :time, presence: true
 end

@@ -5,4 +5,10 @@ Rails.application.routes.draw do
   resources :topics do
     get :incr_counter, on: :member
   end
+
+  resources :sessions do
+    get :get_topics, on: :member
+  end
+
+  resources :subjects
 end
