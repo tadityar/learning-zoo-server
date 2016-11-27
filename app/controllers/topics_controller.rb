@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :prepare_topic, only: [:show, :update, :destroy, :incr_unclear]
+  before_action :prepare_topic, only: [:show, :update, :destroy, :incr_counter]
 
   def index
     @topics = Topic.all
@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
     render json: { errors: "this topic is in use by other things" }
   end
 
-  def incr_unclear
+  def incr_counter
     @topic.std_unclear += 1
     render json: @topic
   end
