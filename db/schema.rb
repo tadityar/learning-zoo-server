@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127164958) do
+ActiveRecord::Schema.define(version: 20161127185351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string  "name"
+    t.integer "current_session_id"
+    t.index ["current_session_id"], name: "index_classrooms_on_current_session_id", using: :btree
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.string   "name",            default: "", null: false
